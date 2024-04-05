@@ -21,7 +21,7 @@ steps:
 # Esta etapa clona el repositorio DevOps-CI-CD de GitHub
 - name: 'gcr.io/cloud-builders/git'
   id: Clone DevOps-CI-CD repository
-  args: ['clone', 'https://github.com/perodriguez1630/DevOps-CI-CD.git', 'DevOps-CI-CD']
+  args: ['clone', 'https://github.com/perodriguez1630/DevOps-CI-CD.git', 'repo-of-ci']
 
 # Esta etapa hace el despliegue en cloud run
 - name: 'gcr.io/cloud-builders/gcloud'
