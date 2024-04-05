@@ -30,7 +30,8 @@ steps:
   args:
   - '-c'
   - |
-     sed "s/GOOGLE_CLOUD_PROJECT/rosy-acolyte-412215/g" repo-of-ci/kubernetes.yaml.tpl | \
+     sed "s/GOOGLE_CLOUD_PROJECT/${PROJECT_ID}/g" repo-of-ci/kubernetes.yaml.tpl | \
+     sed "s/COMMIT_SHA/${SHORT_SHA}/g" > repo-of-ci/kubernetes.yaml
 
 
 # Esta etapa sube el manifiesto de regreso a DevOps-CI-CD en GitHub
