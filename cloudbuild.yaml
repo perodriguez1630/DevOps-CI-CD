@@ -23,29 +23,13 @@ steps:
   id: Clone DevOps-CI-CD repository
   args: ['clone', 'https://github.com/perodriguez1630/DevOps-CI-CD.git', 'DevOps-CI-CD']
 
-# Esta etapa genera el nuevo manifiesto
+# Esta etapa hace el despliegue en cloud run
 - name: 'gcr.io/cloud-builders/gcloud'
-  id: Generate Kubernetes manifest
-  entrypoint: /bin/sh
   args:
-  - '-c'
-  - |
-     sed "s/GOOGLE_CLOUD_PROJECT/${PROJECT_ID}/g" repo-of-ci/kubernetes.yaml.tpl | \
-     sed "s/COMMIT_SHA/${SHORT_SHA}/g" > repo-of-ci/kubernetes.yaml
-
-
-# Esta etapa sube el manifiesto de regreso a DevOps-CI-CD en GitHub
-- name: 'gcr.io/cloud-builders/git'
-  id: Push manifest
-  entrypoint: /bin/sh
-  args:
-  - '-c'
-  - |
-    set -x && \
-    cd DevOps-CI-CD && \
-    git add kubernetes.yaml && \
-    git commit -m "Deploying image us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci"
-    Author: $(git log --format='%an <%ae>' -n 1 HEAD)" && \
-    git push 
-
+  - 'run'
+  - 'deploy'
+  - 'cloud-run-ci'
+  - '--image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
+  - '--platform=managed'
+  - '--region=us-central1'
 
