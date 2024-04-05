@@ -18,4 +18,33 @@ steps:
   - 'us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
 
 
-  
+# Esta etapa clona el repositorio DevOps-CI-CD de GitHub
+- name: 'gcr.io/cloud-builders/git'
+  id: Clone DevOps-CI-CD repository
+  args: ['clone', 'https://github.com/perodriguez1630/DevOps-CI-CD.git', 'DevOps-CI-CD']
+
+# Esta etapa genera el nuevo manifiesto
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Generate Kubernetes manifest
+  entrypoint: /bin/sh
+  args:
+  - '-c'
+  - |
+     sed "s/GOOGLE_CLOUD_PROJECT/rosy-acolyte-412215/g" repo-of-ci/kubernetes.yaml.tpl | \
+
+
+# Esta etapa sube el manifiesto de regreso a DevOps-CI-CD en GitHub
+- name: 'gcr.io/cloud-builders/git'
+  id: Push manifest
+  entrypoint: /bin/sh
+  args:
+  - '-c'
+  - |
+    set -x && \
+    cd DevOps-CI-CD && \
+    git add kubernetes.yaml && \
+    git commit -m "Deploying image us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci"
+    Author: $(git log --format='%an <%ae>' -n 1 HEAD)" && \
+    git push 
+
+
