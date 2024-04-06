@@ -28,7 +28,7 @@ steps:
   args:
   - 'run'
   - 'deploy'
-  - 'cloud-run-ci'
+  - 'cloud-run-ci-cd'
   - '--image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
   - '--platform=managed'
   - '--region=us-central1'
