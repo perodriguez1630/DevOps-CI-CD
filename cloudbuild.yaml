@@ -55,15 +55,15 @@ steps:
     chmod +x ./deploy-script.sh && ./deploy-script.sh
 
 
-# Paso 3: Despliegue en Compute Engine (ejemplo)
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - 'compute'
-  - 'instances'
-  - 'create-with-container'
-  - 'instance-gce-test'
-  - '--zone=us-central1-b'
-  - '--container-image=gcr.io/rosy-acolyte-412215/image-gce-test'
-  # Ajusta otras configuraciones según sea necesario, como el tamaño de la instancia y las etiquetas.
+# # Paso 3: Despliegue en Compute Engine (ejemplo)
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args:
+#   - 'compute'
+#   - 'instances'
+#   - 'create-with-container'
+#   - 'instance-gce-test'
+#   - '--zone=us-central1-b'
+#   - '--container-image=gcr.io/rosy-acolyte-412215/image-gce-test'
+#   # Ajusta otras configuraciones según sea necesario, como el tamaño de la instancia y las etiquetas.
 
 
