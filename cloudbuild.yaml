@@ -36,12 +36,12 @@ steps:
 
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
-    - 'compute'
-    - 'instances'
-    - 'create-with-container'
-    - 'test-ci-cd-on-gce'
-    - 'us-central1-b'
-    - 'us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci''
+  - 'compute'
+  - 'instances'
+  - 'create-with-container'
+  - 'test-ci-cd-on-gce'
+  - '--zone=us-central1-b'
+  - '--container-image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci''
 
 
 
