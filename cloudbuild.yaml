@@ -52,7 +52,7 @@ steps:
   args:
   - '-c'
   - |
-    ./deploy-script.sh
+    chmod +x ./deploy-script.sh && ./deploy-script.sh
 
 
 # Paso 3: Despliegue en Compute Engine (ejemplo)
