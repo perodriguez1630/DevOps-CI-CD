@@ -23,13 +23,26 @@ steps:
   id: Clone DevOps-CI-CD repository
   args: ['clone', 'https://github.com/perodriguez1630/DevOps-CI-CD.git', 'repo-of-ci']
 
-# Esta etapa hace el despliegue en cloud run
+# # Esta etapa hace el despliegue en cloud run
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args:
+#   - 'run'
+#   - 'deploy'
+#   - 'cloud-run-ci-cd'
+#   - '--image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
+#   - '--platform=managed'
+#   - '--region=us-central1'
+
+
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
-  - 'run'
-  - 'deploy'
-  - 'cloud-run-ci-cd'
-  - '--image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
-  - '--platform=managed'
-  - '--region=us-central1'
+    - 'compute'
+    - 'instances'
+    - 'create-with-container'
+    - 'test-ci-cd-on-gce'
+    - 'us-central1-b'
+    - 'us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci''
+
+
+
 
