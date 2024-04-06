@@ -42,7 +42,3 @@ steps:
   - 'test-ci-cd-on-gce'
   - '--zone=us-central1-b'
   - '--container-image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci''
-
-
-
-
