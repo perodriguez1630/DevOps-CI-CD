@@ -23,15 +23,15 @@
 #   id: Clone DevOps-CI-CD repository
 #   args: ['clone', 'https://github.com/perodriguez1630/DevOps-CI-CD.git', 'repo-of-ci']
 
-# # # Esta etapa hace el despliegue en cloud run
-# # - name: 'gcr.io/cloud-builders/gcloud'
-# #   args:
-# #   - 'run'
-# #   - 'deploy'
-# #   - 'cloud-run-ci-cd'
-# #   - '--image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
-# #   - '--platform=managed'
-# #   - '--region=us-central1'
+# # Esta etapa hace el despliegue en cloud run
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args:
+#   - 'run'
+#   - 'deploy'
+#   - 'cloud-run-ci-cd'
+#   - '--image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
+#   - '--platform=managed'
+#   - '--region=us-central1'
 
 
 steps:
@@ -40,21 +40,22 @@ steps:
   args:
   - 'build'
   - '-t'
-  - 'gcr.io/rosy-acolyte-412215/image-gce-ci-cd
+  - 'gcr.io/rosy-acolyte-412215/image-gce-test'
   - '.'
 
+# Paso 2: Subir la imagen a Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: 
-  - 'push'
-  - 'gcr.io/rosy-acolyte-412215/image-gce-ci-cd'
+  args: ['push', 'gcr.io/rosy-acolyte-412215/image-gce-test']
 
+# Paso 3: Despliegue en Compute Engine (ejemplo)
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
   - 'compute'
   - 'instances'
   - 'create-with-container'
-  - 'instance-ci-cd'
+  - 'instance-gce-test'
   - '--zone=us-central1-b'
-  - '--container-image=gcr.io/rosy-acolyte-412215/image-gce-ci-cd'
-  
+  - '--container-image=gcr.io/rosy-acolyte-412215/image-gce-test'
+  # Ajusta otras configuraciones según sea necesario, como el tamaño de la instancia y las etiquetas.
+
 
