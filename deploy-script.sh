@@ -25,13 +25,13 @@
 INSTANCE_NAME="instance-gce-test"
 ZONE="us-central1-b"
 PROJECT_ID="rosy-acolyte-412215"
-SCRIPT_PATH="/home/joshua163011/test.sh"  # Ruta al archivo .sh dentro de la instancia
+SCRIPT_PATH="/home/joshua163011/"  # Ruta al archivo .sh dentro de la instancia
 
 # Verificar si la instancia existe
 if gcloud compute instances describe $INSTANCE_NAME --zone=$ZONE &>/dev/null; then
   echo "La instancia ya existe, ejecutando el archivo .sh..."
   # Ejecutar el archivo .sh dentro de la instancia existente usando SSH
-  gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command="bash -s" < $SCRIPT_PATH
+  gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --project=$PROJECT_ID --command="bash -s" < $SCRIPT_PATH
 else
   echo "La instancia no existe, creando la instancia y ejecutando el archivo .sh..."
   # Crear la instancia y ejecutar el archivo .sh
