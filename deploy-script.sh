@@ -1,4 +1,4 @@
-!/bin/bash
+/!/bin/bash
 
 # Nombre de la instancia y otras variables
 # INSTANCE_NAME="instance-gce-test"
