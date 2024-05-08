@@ -1,39 +1,39 @@
 
 # Este es el proceso para crear un CI CD en el cloud run services
-steps:
-# This step builds the container image.
-- name: 'gcr.io/cloud-builders/docker'
-  id: Build
-  args:
-  - 'build'
-  - '-t'
-  - 'us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
-  - '.'
+ steps:
+# # This step builds the container image.
+# - name: 'gcr.io/cloud-builders/docker'
+#   id: Build
+#   args:
+#   - 'build'
+#   - '-t'
+#   - 'us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
+#   - '.'
 
-# This step pushes the image to Artifact Registry
-# The PROJECT_ID and SHORT_SHA variables are automatically
-# replaced by Cloud Build.
-- name: 'gcr.io/cloud-builders/docker'
-  id: Push
-  args:
-  - 'push'
-  - 'us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
+# # This step pushes the image to Artifact Registry
+# # The PROJECT_ID and SHORT_SHA variables are automatically
+# # replaced by Cloud Build.
+# - name: 'gcr.io/cloud-builders/docker'
+#   id: Push
+#   args:
+#   - 'push'
+#   - 'us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
 
 
-# Esta etapa clona el repositorio DevOps-CI-CD de GitHub
-- name: 'gcr.io/cloud-builders/git'
-  id: Clone DevOps-CI-CD repository
-  args: ['clone', 'https://github.com/perodriguez1630/DevOps-CI-CD.git', 'repo-of-ci']
+# # Esta etapa clona el repositorio DevOps-CI-CD de GitHub
+# - name: 'gcr.io/cloud-builders/git'
+#   id: Clone DevOps-CI-CD repository
+#   args: ['clone', 'https://github.com/perodriguez1630/DevOps-CI-CD.git', 'repo-of-ci']
 
-# Esta etapa hace el despliegue en cloud run
-- name: 'gcr.io/cloud-builders/gcloud'
-  args:
-  - 'run'
-  - 'deploy'
-  - 'cloud-run-ci-cd'
-  - '--image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
-  - '--platform=managed'
-  - '--region=us-central1'
+# # Esta etapa hace el despliegue en cloud run
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args:
+#   - 'run'
+#   - 'deploy'
+#   - 'cloud-run-ci-cd'
+#   - '--image=us-central1-docker.pkg.dev/rosy-acolyte-412215/repo-of-ci/images-ci'
+#   - '--platform=managed'
+#   - '--region=us-central1'
 
 # # Este es el proceso de crear un CI/CD en una VM en GCE
 # steps:
@@ -46,15 +46,15 @@ steps:
 #   - '.'
 
 # # Paso 2: Subir la imagen a Container Registry
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['push', 'gcr.io/rosy-acolyte-412215/image-gce-test']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/rosy-acolyte-412215/image-gce-test']
 
-# - name: 'gcr.io/cloud-builders/gcloud'
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     chmod +x ./deploy-script.sh && ./deploy-script.sh
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    chmod +x ./deploy-script.sh && ./deploy-script.sh
 
 
 
