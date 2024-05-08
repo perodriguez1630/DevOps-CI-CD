@@ -49,12 +49,12 @@
 # - name: 'gcr.io/cloud-builders/docker'
 #   args: ['push', 'gcr.io/rosy-acolyte-412215/image-gce-test']
 
-- name: 'gcr.io/cloud-builders/gcloud'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    chmod +x ./deploy-script.sh && ./deploy-script.sh
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      chmod +x ./deploy-script.sh && ./deploy-script.sh
 
 
 
