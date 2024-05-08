@@ -46,8 +46,8 @@
 #   - '.'
 
 # # Paso 2: Subir la imagen a Container Registry
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/rosy-acolyte-412215/image-gce-test']
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push', 'gcr.io/rosy-acolyte-412215/image-gce-test']
 
 - name: 'gcr.io/cloud-builders/gcloud'
   entrypoint: 'bash'
