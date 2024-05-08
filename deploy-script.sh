@@ -28,7 +28,7 @@ PROJECT_ID="rosy-acolyte-412215"
 SCRIPT_PATH="/home/joshua163011/"  # Ruta al archivo .sh dentro de la instancia
 
 # Verificar si la instancia existe
-if gcloud compute instances describe $INSTANCE_NAME --zone=$ZONE &>/dev/null; then
+if gcloud compute instances describe $INSTANCE_NAME --zone=$ZONE --project=$PROJECT_ID &>/dev/null; then
   echo "La instancia ya existe, ejecutando el archivo .sh..."
   # Ejecutar el archivo .sh dentro de la instancia existente usando SSH
   gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --project=$PROJECT_ID --command="bash -s" < $SCRIPT_PATH
